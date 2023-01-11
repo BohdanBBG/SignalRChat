@@ -44,14 +44,23 @@ export class ChatHub {
     return startedPromise;
   }
 
-  public Invoke(to: string, message: string) {
-    this._hubConnection.invoke(to, message);
+  public Invoke(to: string, message: {}) {
+    this._hubConnection.invoke(to, ...this.parseObjectToParamArray(message));
   }
 
   public registerServerEvents(Vue: any) {
     //Forward server side SignalR events through $questionHub, where components will listen to them
-    this._hubConnection.on(SERVER_EVENTS.SEND, (text: string) => {
-      Vue.$emit(SERVER_EVENTS.SEND, text);
+    this._hubConnection.on(SERVER_EVENTS.SEND, (...args) => {
+      Vue.$emit(SERVER_EVENTS.SEND, ...args);
     });
+  }
+
+  private parseObjectToParamArray(object: any) {
+    const paramArray = [];
+
+    for (const [key, value] of Object.entries(object)) {
+      paramArray.push(value);
+    }
+    return paramArray;
   }
 }

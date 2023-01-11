@@ -12,7 +12,6 @@ export const ChatHubPlugin = {
       events: newVueInstance,
       chatHubInstance: chatHub,
     };
-    // Forward server side SignalR events through $questionHub, where components will listen to them
 
     chatHub.registerServerEvents(newVueInstance);
     chatHub.start();
