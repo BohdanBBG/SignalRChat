@@ -18,6 +18,8 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
+    "@microsoft/signalr": "^7.0.2",
+    "@types/signalr": "^2.4.0",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
