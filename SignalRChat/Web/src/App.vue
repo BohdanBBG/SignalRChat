@@ -1,39 +1,39 @@
 <template>
-  <div>
-    <v-app-bar v-if="!IsLogin" dark>
+  <v-app>
+    <v-app-bar v-if="!IsLogin" dark app>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Some Cool Chat</v-toolbar-title>
     </v-app-bar>
 
-    <template v-if="!IsLogin">
-      <v-navigation-drawer v-model="drawer" absolute temporary>
-        <v-list nav dense>
-          <v-list-item-group v-model="group">
-            <v-list-item>
-              <v-list-item-icon>
-                <v-icon>mdi-home</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>Home</v-list-item-title>
-            </v-list-item>
+    <v-navigation-drawer v-if="!IsLogin" v-model="drawer" temporary app>
+      <v-list nav dense>
+        <v-list-item-group v-model="group">
+          <v-list-item>
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
 
-            <v-list-item :to="AvailableRoutes.login">
-              <v-list-item-icon>
-                <v-icon>mdi-account</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>Logout</v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-navigation-drawer>
-    </template>
+          <v-list-item :to="AvailableRoutes.login">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
 
     <v-main>
-      <keep-alive :include="['Login']">
-        <router-view />
-      </keep-alive>
+      <v-container fluid>
+        <keep-alive :include="['Login']">
+          <router-view />
+        </keep-alive>
+      </v-container>
     </v-main>
-  </div>
+  </v-app>
 </template>
 
 <script lang="ts">
