@@ -1,4 +1,4 @@
-import { ChatHub } from "@/core/services/ChatHub";
+import { ChatHub } from "@/core/services/hubs/ChatHub";
 import Vue from "vue";
 
 export const ChatHubPlugin = {
@@ -7,7 +7,7 @@ export const ChatHubPlugin = {
 
     // use new Vue instance as an event bus
     const newVueInstance = new Vue();
-    // every component will use this.$questionHub to access the event bus
+
     vue.prototype.$chatHub = {
       events: newVueInstance,
       chatHubInstance: chatHub,

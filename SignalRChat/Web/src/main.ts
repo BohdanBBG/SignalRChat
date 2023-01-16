@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
-import { ChatHubPlugin } from "./plugins/costum/ChatHubPlugin";
+import { ChatHubPlugin } from "./plugins/custom/ChatHubPlugin";
 
 Vue.config.productionTip = false;
 Vue.use(ChatHubPlugin);

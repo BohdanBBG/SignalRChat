@@ -1,19 +1,27 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
+import { ROUTE_NAME, ROUTE_PATH } from "./types/enums";
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
-    name: "chatContainer",
+    path: ROUTE_PATH.HOME,
+    name: ROUTE_NAME.HOME,
+    meta: { requiresAuth: true },
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
+    // this generates a separate chunk (chatContainer.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "HelloWorld" */ "../components/shared/chatComponent/chatContainer.vue"
+        /* webpackChunkName: "chatContainer" */ "../components/shared/chatComponent/chatContainer.vue"
       ),
+  },
+  {
+    path: ROUTE_PATH.AUTH_LOGIN,
+    name: ROUTE_NAME.AUTH_LOGIN,
+    meta: { requiresAuth: true },
+    component: () => import("../components/Auth/LoginForm.vue"),
   },
 ];
 

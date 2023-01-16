@@ -5,7 +5,7 @@ import {
 } from "@microsoft/signalr";
 import { ApiConfig } from "@/types";
 import { apiConfig as externalApiConfig } from "@/appsetings";
-import { SERVER_EVENTS } from "./types";
+import { SERVER_EVENTS } from "../types";
 
 const CHATHUB_API_ENDPOINT = "/chat";
 
@@ -35,7 +35,7 @@ export class ChatHub {
   }
 
   public start() {
-    let startedPromise: any = this._hubConnection.start().catch((err) => {
+    const startedPromise = this._hubConnection.start().catch((err) => {
       console.error("Failed to connect with hub", err);
       return new Promise((resolve, reject) =>
         setTimeout(() => this.start().then(resolve).catch(reject), 5000)
@@ -44,7 +44,7 @@ export class ChatHub {
     return startedPromise;
   }
 
-  public Invoke(to: string, message: {}) {
+  public Invoke(to: string, message: object) {
     this._hubConnection.invoke(to, ...this.parseObjectToParamArray(message));
   }
 

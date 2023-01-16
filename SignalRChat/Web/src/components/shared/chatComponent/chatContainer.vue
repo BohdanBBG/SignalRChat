@@ -11,12 +11,18 @@
           label="First User"
           :rules="InputRules"
           hide-details="auto"
-        ></v-text-field>
+        />
       </v-col>
       <v-col class="mb-4">
-        <v-btn elevation="2" color="primary" rounded small v-on:click="Send"
-          >Send</v-btn
+        <v-btn
+          elevation="2"
+          color="primary"
+          rounded
+          small
+          @click="Send"
         >
+          Send
+        </v-btn>
       </v-col>
     </v-row>
 
@@ -49,7 +55,7 @@ class Message {
   }
 
   sender!: string;
-  message!: string | {};
+  message!: string | object;
 }
 
 @Component
@@ -103,7 +109,14 @@ export default class ChatContainer extends Vue {
   }
 
   created() {
+    //@ts-ignore
     this.$chatHub.events.$on(SERVER_EVENTS.SEND, this.onServerSend);
+  }
+
+  beforeDestroy() {
+    //@ts-ignore
+    // Make sure to cleanup SignalR event handlers when removing the component
+    this.$chatHub.events.$off(SERVER_EVENTS.SEND, this.onServerSend);
   }
 }
 </script>
