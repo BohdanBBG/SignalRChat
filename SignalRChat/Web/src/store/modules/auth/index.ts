@@ -7,6 +7,7 @@ import mutations from "./mutations";
 
 const state: IAuthStore = {
   loggedIn: false,
+  credentials: null,
 };
 
 const authStore: Module<IAuthStore, RootStateInterface> = {

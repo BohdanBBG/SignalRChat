@@ -4,8 +4,12 @@ import { IAuthStore, AUTH_GETTERS } from './types';
 
 const getters: GetterTree<IAuthStore, RootStateInterface> = {
     
-  [AUTH_GETTERS.IS_LOGGEDIN](state: IAuthStore) {
-    return state.loggedIn;
+  [AUTH_GETTERS.IS_LOGGED_IN](state: IAuthStore) {
+
+    // console.log(12, localStorage.getItem('auth-token'))
+    // return localStorage.getItem('auth-token') !== null;
+    
+    return state.loggedIn; //TODO
   },
  
 };
